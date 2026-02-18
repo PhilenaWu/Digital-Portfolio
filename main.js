@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initProjectFocus();
     initHobbyParallax();
     initTypingEffect();
+    initCursorTrail();
     
     setTimeout(() => lucide.createIcons(), 100);
 });
@@ -425,6 +426,7 @@ function initLightbox() {
 
         const imgEl = element.querySelector('img');
         const videoSrc = imgEl && imgEl.dataset ? imgEl.dataset.video : null;
+        const certSrc = element && element.dataset ? element.dataset.cert : null;
 
         if (videoSrc) {
             const video = document.createElement('video');
@@ -446,6 +448,23 @@ function initLightbox() {
 
             // attempt to play (may be blocked by browser autoplay policies)
             video.play().catch(() => {});
+        } else if (certSrc) {
+            const img = document.createElement('img');
+            img.src = certSrc;
+            img.alt = element.querySelector('h4') ? element.querySelector('h4').textContent : '';
+            img.style.maxWidth = '90%';
+            img.style.maxHeight = '80vh';
+            img.addEventListener('click', (e) => e.stopPropagation());
+
+            mediaContainer.appendChild(img);
+
+            img.style.opacity = '0';
+            img.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                img.style.transition = 'all 0.2s ease';
+                img.style.opacity = '1';
+                img.style.transform = 'scale(1)';
+            }, 10);
         } else {
             const img = document.createElement('img');
             img.src = imgEl ? imgEl.src : '';
@@ -465,7 +484,11 @@ function initLightbox() {
             }, 10);
         }
 
-        caption.textContent = imgEl ? imgEl.alt : '';
+        // caption precedence: image alt -> cert title -> empty
+        let captionText = '';
+        if (imgEl && imgEl.alt) captionText = imgEl.alt;
+        else if (certSrc && element.querySelector('h4')) captionText = element.querySelector('h4').textContent;
+        caption.textContent = captionText;
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
     };
@@ -562,4 +585,67 @@ function initTypingEffect() {
     };
     
     setTimeout(type, 800);
+}
+
+// ============================================
+// CURSOR TRAIL EFFECT
+// ============================================
+function initCursorTrail() {
+    const codeChars = ['<', '>', '{', '}', '[', ']', '(', ')', ';', ':', '.', ',', '$', '@', '#', '%', '=', '+', '-', '*', '&', '|', '/', '\\', '?'];
+    const colors = [
+        'var(--accent-cyan)',
+        'var(--accent-purple)',
+        'var(--accent-green)',
+        'var(--accent-pink)',
+        'var(--accent-orange)'
+    ];
+    
+    let mouseX = 0;
+    let mouseY = 0;
+    let lastEmitTime = 0;
+    const emitInterval = 30; // Milliseconds between trail elements
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        const now = Date.now();
+        if (now - lastEmitTime > emitInterval) {
+            createTrailElement(mouseX, mouseY);
+            lastEmitTime = now;
+        }
+    });
+    
+    function createTrailElement(x, y) {
+        const trail = document.createElement('div');
+        trail.className = 'cursor-trail';
+        
+        // Random code character
+        const char = codeChars[Math.floor(Math.random() * codeChars.length)];
+        trail.textContent = char;
+        
+        // Random color
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        trail.style.color = color;
+        
+        // Random offset for varied trail
+        const offsetX = (Math.random() - 0.5) * 20;
+        const offsetY = (Math.random() - 0.5) * 20;
+        
+        trail.style.left = (x + offsetX) + 'px';
+        trail.style.top = (y + offsetY) + 'px';
+        
+        // Random movement direction
+        const tx = (Math.random() - 0.5) * 40;
+        const ty = -15 - Math.random() * 20;
+        trail.style.setProperty('--tx', tx + 'px');
+        trail.style.setProperty('--ty', ty + 'px');
+        
+        document.body.appendChild(trail);
+        
+        // Remove element after animation completes
+        setTimeout(() => {
+            trail.remove();
+        }, 800);
+    }
 }

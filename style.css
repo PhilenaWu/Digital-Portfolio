@@ -1239,3 +1239,29 @@ img {
         grid-template-columns: 1fr;
     }
 }
+
+/* ============================================
+   CURSOR TRAIL EFFECT
+   ============================================ */
+.cursor-trail {
+    position: fixed;
+    pointer-events: none;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 9999;
+    animation: trailFade 0.8s ease-out forwards;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+}
+
+@keyframes trailFade {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx, 0), var(--ty, -15px)) scale(0.8);
+    }
+}
