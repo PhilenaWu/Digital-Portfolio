@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initHobbyParallax();
     initTypingEffect();
     initCursorTrail();
+    initSkillFilters();
     
     setTimeout(() => lucide.createIcons(), 100);
 });
@@ -648,4 +649,38 @@ function initCursorTrail() {
             trail.remove();
         }, 800);
     }
+}
+
+// ============================================
+// SKILL FILTER FUNCTIONALITY
+// ============================================
+function initSkillFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const skillCards = document.querySelectorAll('.skill-card');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filter = button.getAttribute('data-filter');
+            
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Filter cards
+            skillCards.forEach(card => {
+                if (filter === 'all') {
+                    card.style.display = 'flex';
+                    card.style.animation = 'fadeIn 0.3s ease';
+                } else {
+                    const category = card.getAttribute('data-category');
+                    if (category === filter) {
+                        card.style.display = 'flex';
+                        card.style.animation = 'fadeIn 0.3s ease';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        });
+    });
 }

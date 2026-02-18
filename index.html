@@ -90,11 +90,11 @@
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Email</span>
-                            <span class="detail-value">philenawu@gmail.com</span>
+                            <a href="mailto:philenawu@gmail.com" class="detail-value" style="color: inherit; text-decoration: none; cursor: pointer;">philenawu@gmail.com</a>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Phone</span>
-                            <span class="detail-value">+65 8377 7588</span>
+                            <a href="tel:+65-8377-7588" class="detail-value" style="color: inherit; text-decoration: none; cursor: pointer;">+65 8377 7588</a>
                         </div>
                         <div class="detail-item">
                             <span class="detail-label">Location</span>
@@ -364,7 +364,7 @@
                             <span>JavaScript</span>
                         </div>
                     
-                        <h3>Genlink</h3>
+                        <h3>Genlink - Intergenerational Platform</h3>
                         <p>A web-based intergenerational platform connecting Singapore's youths, adults, and elderly through sustained, meaningful interactions.</p>
                     </div>
                 </div>
@@ -492,39 +492,73 @@
                 <h2 class="section-title">Skills & Expertise</h2>
             </div>
             
+            <div class="skills-filter-buttons">
+                <button class="filter-btn active" data-filter="all">ALL</button>
+                <button class="filter-btn" data-filter="languages">LANGUAGES</button>
+                <button class="filter-btn" data-filter="frameworks">FRAMEWORKS</button>
+                <button class="filter-btn" data-filter="database">DATA & DB</button>
+                <button class="filter-btn" data-filter="deployment">DEPLOYMENT</button>
+            </div>
+            
             <div class="skills-grid">
-                <div class="skill-category">
-                    <h3><i data-lucide="code"></i> Technical</h3>
-                    <div class="skill-list">
-                        <span class="skill-pill">Python</span>
-                        <span class="skill-pill">Full-Stack Web Dev</span>
-                        <span class="skill-pill">MySQL</span>
-                        <span class="skill-pill">Power BI</span>
-                        <span class="skill-pill">Tableau</span>
-                        <span class="skill-pill">Flask</span>
-                        <span class="skill-pill">GitHub</span>
-                        <span class="skill-pill">Bootstrap</span>
-                    </div>
+                <!-- Languages -->
+                <div class="skill-card" data-category="languages">
+                    <div class="skill-icon">📄</div>
+                    <h3>HTML</h3>
+                </div>
+                <div class="skill-card" data-category="languages">
+                    <div class="skill-icon">🎨</div>
+                    <h3>CSS</h3>
+                </div>
+                <div class="skill-card" data-category="languages">
+                    <div class="skill-icon">⚡</div>
+                    <h3>JavaScript</h3>
+                </div>
+                <div class="skill-card" data-category="languages">
+                    <div class="skill-icon">🐍</div>
+                    <h3>Python</h3>
                 </div>
                 
-                <div class="skill-category">
-                    <h3><i data-lucide="users"></i> Soft Skills</h3>
-                    <div class="skill-list">
-                        <span class="skill-pill">Leadership</span>
-                        <span class="skill-pill">Communication</span>
-                        <span class="skill-pill">Time Management</span>
-                        <span class="skill-pill">Analytical Thinking</span>
-                        <span class="skill-pill">Teamwork</span>
-                        <span class="skill-pill">Adaptability</span>
-                    </div>
+                <!-- Frameworks -->
+                <div class="skill-card" data-category="frameworks">
+                    <div class="skill-icon">🔧</div>
+                    <h3>Flask</h3>
+                </div>
+                <div class="skill-card" data-category="frameworks">
+                    <div class="skill-icon">🎭</div>
+                    <h3>Jinja</h3>
+                </div>
+                <div class="skill-card" data-category="frameworks">
+                    <div class="skill-icon">💾</div>
+                    <h3>Bootstrap</h3>
                 </div>
                 
-                <div class="skill-category">
-                    <h3><i data-lucide="message-circle"></i> Languages</h3>
-                    <div class="skill-list">
-                        <span class="skill-pill">English</span>
-                        <span class="skill-pill">Chinese</span>
-                    </div>
+                <!-- Database -->
+                <div class="skill-card" data-category="database">
+                    <div class="skill-icon">🗄️</div>
+                    <h3>MySQL</h3>
+                </div>
+                <div class="skill-card" data-category="database">
+                    <div class="skill-icon">📊</div>
+                    <h3>Power BI</h3>
+                </div>
+                <div class="skill-card" data-category="database">
+                    <div class="skill-icon">📈</div>
+                    <h3>Tableau</h3>
+                </div>
+                
+                <!-- Other Tools -->
+                <div class="skill-card" data-category="deployment">
+                    <div class="skill-icon">🌐</div>
+                    <h3>Render</h3>
+                </div>
+                <div class="skill-card" data-category="deployment">
+                    <div class="skill-icon">🔀</div>
+                    <h3>Git Hub</h3>
+                </div>
+                <div class="skill-card" data-category="deployment">
+                    <div class="skill-icon">🚀</div>
+                    <h3>Railway</h3>
                 </div>
             </div>
         </div>
@@ -553,10 +587,10 @@
                             <i data-lucide="mail"></i>
                             <span>philenawu@gmail.com</span>
                         </a>
-                        <div class="contact-item">
+                        <a href="tel:+65-8377-7588" class="contact-item">
                             <i data-lucide="phone"></i>
                             <span>+65 8377 7588</span>
-                        </div>
+                        </a>
                         <div class="contact-item">
                             <i data-lucide="map-pin"></i>
                             <span>Singapore</span>
