@@ -1129,7 +1129,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-gray);
+    color: var(--text-white);
     transition: all 0.3s;
 }
 
